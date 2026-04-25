@@ -1,7 +1,7 @@
 """
 This code generates a violin plot using the seaborn library. The plot uses the Iris dataset for 
 demonstration, and includes example annotations for significance based on statistical testing. 
-The appearance of the plot is customized and the final figure is saved as a PDF file.
+The appearance of the plot is customized and the final figure is saved.
 """
 import os
 import pandas as pd
@@ -15,15 +15,15 @@ import pypalettes
 pd.options.mode.chained_assignment = None
 
 
-def generate_violin_plot(df,
-                         group_variable,
-                         dependent_variable,
-                         group_variable_order,
-                         group_variable_label=None,
-                         dependent_variable_label=None,
-                         dependent_variable_range=None,
-                         palette_list=None,
-                         super_title = None):
+def generate_plot(df,
+                  group_variable,
+                  dependent_variable,
+                  group_variable_order,
+                  group_variable_label=None,
+                  dependent_variable_label=None,
+                  dependent_variable_range=None,
+                  palette_list=None,
+                  super_title = None):
     """
     Generates a violin plot with statistical annotations.
     """
@@ -131,7 +131,7 @@ def generate_violin_plot(df,
         ax.grid(False)
 
         # adjust subplots spacing
-        # if subplots are added, can use include, for e.g., 'wspace=0.4, hspace=0.4'
+        # if subplots are added, can include, for e.g., 'wspace=0.4, hspace=0.4'
         # to control padding between subplots
         plt.subplots_adjust(bottom=0.3, top=0.85, left=0.29, right=0.81)
 
@@ -157,18 +157,19 @@ if __name__ == '__main__':
     example_dependent_variable = example_data_df.columns.tolist()[2]
     example_group_variable_order = example_data_df[example_group_variable].unique().tolist()
     # palette setup
-    cmap = pypalettes.load_cmap("Halichoeres_brasiliensis", keep_first_n=3)
+    cmap = pypalettes.load_cmap("Halichoeres_brasiliensis",
+                                keep_first_n=len(example_group_variable_order))
     pypalettes_list = cmap.colors # return colors as a list of hexadecimal values
 
     # --- plot data ---
-    generate_violin_plot(example_data_df,
-                         example_group_variable,
-                         example_dependent_variable,
-                         example_group_variable_order,
-                         group_variable_label=['Iris setosa', 'Iris versicolor', 'Iris virginica'],
-                         dependent_variable_label=r'Sepal Width $\mathregular{[cm]}$',
-                         dependent_variable_range=[-2, 8],
-                         palette_list=pypalettes_list)
+    generate_plot(example_data_df,
+                  example_group_variable,
+                  example_dependent_variable,
+                  example_group_variable_order,
+                  group_variable_label=['Iris setosa', 'Iris versicolor', 'Iris virginica'],
+                  dependent_variable_label=r'Sepal Width $\mathregular{[cm]}$',
+                  dependent_variable_range=[-2, 8],
+                  palette_list=pypalettes_list)
 
     # save figure
     FILE_DESTINATION = r'.\figure'
