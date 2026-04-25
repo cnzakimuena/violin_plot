@@ -1,0 +1,21 @@
+
+*install*
+
+conda create -p C:\[path]\gstats_env
+conda activate C:\[path]\gstats_env
+
+# install python version
+conda install python==3.11
+
+cd C:\[...]\software\local-repos\group-stats
+pip install -r requirements.txt
+
+------------------------------------
+
+*uninstall*
+
+# within Anaconda prompt, check if corresponding virtual environment exists by listing environments
+conda info --envs
+# remove target environment
+conda remove -p C:\[path]\gstats_env --all
+
