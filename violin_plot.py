@@ -3,6 +3,7 @@ This code generates a violin plot using the seaborn library. The plot uses the I
 demonstration, and includes example annotations for significance based on statistical testing. 
 The appearance of the plot is customized and the final figure is saved as a PDF file.
 """
+import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -171,6 +172,7 @@ if __name__ == '__main__':
                          palette_list=pypalettes_list)
 
     # save figure
-    FILE_DESTINATION = r'.\figure.pdf'
-    plt.savefig(FILE_DESTINATION, format="pdf")
+    FILE_DESTINATION = r'.\figure'
+    plt.savefig(os.path.join(FILE_DESTINATION + '.pdf').replace("\\", "/"), format="pdf")
+    plt.savefig(os.path.join(FILE_DESTINATION + '.png').replace("\\", "/"), dpi=300)
     plt.close()
