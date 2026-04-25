@@ -139,10 +139,9 @@ def generate_violin_plot(df,
         if super_title is not None:
             fig.suptitle(super_title, fontsize="large", color="k")
 
-        # draw lines below subplots
+        # draw line and text below group labels
         trans = ax.get_xaxis_transform()
         ax.plot([0.8, 2.3], [-.36, -.36], color="k", transform=trans, clip_on=False, linewidth=2)
-        # add row titles
         plt.figtext(0.645, 0.085, "non-setosa", ha="center", va="top", fontsize=20, color="k")
 
 
