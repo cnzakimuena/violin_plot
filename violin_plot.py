@@ -57,15 +57,15 @@ def generate_plot(df,
             line_var.set_alpha(1)
             line_count += 1
 
-        # # uncomment to add swarm plot to violins
-        # # swarm plot
-        # ax = sns.swarmplot(data=df, x=group_variable, y=dependent_variable,
-        #                    order=group_variable_order,
-        #                    size=4,
-        #                    facecolors='white',
-        #                    edgecolor='k',
-        #                    linewidth=2,
-        #                    zorder=2)
+        if 'swarm_plot' in plot_kwargs and plot_kwargs['swarm_plot']:
+            # swarm plot; use keyword argument 'swarm_plot=True'
+            ax = sns.swarmplot(data=df, x=group_variable, y=dependent_variable,
+                            order=group_variable_order,
+                            size=4,
+                            facecolors='white',
+                            edgecolor='k',
+                            linewidth=2,
+                            zorder=2)
 
         ax.axhline(y=0, color='k', linestyle=':', linewidth=2)
 
