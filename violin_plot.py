@@ -40,8 +40,9 @@ def generate_plot(df,
                             inner='quartile',
                             order=group_variable_order, linewidth=3,
                             hue=group_variable,
-                            palette=['white'] * len(group_variable_order),
-                            legend=False)
+                            fill=False,
+                            legend=False,
+                            zorder=2)
         # recolor violin edges
         for t, _ in enumerate(plot_kwargs['palette_list']):
             ax.collections[t].set_edgecolor(plot_kwargs['palette_list'][t])
@@ -63,10 +64,10 @@ def generate_plot(df,
             ax = sns.swarmplot(data=df, x=group_variable, y=dependent_variable,
                             order=group_variable_order,
                             size=4,
-                            facecolors='white',
-                            edgecolor='k',
+                            facecolors='darkgray',
+                            edgecolor='darkgray',
                             linewidth=2,
-                            zorder=2)
+                            zorder=0)
 
         ax.axhline(y=0, color='k', linestyle=':', linewidth=2)
 
